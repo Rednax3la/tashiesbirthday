@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Tashie!! 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hot-pink: #ff3d7f;
+    --coral: #ff6b4a;
+    --yellow: #ffd93d;
+    --mint: #6bcb77;
+    --sky: #4ecdc4;
+    --lavender: #c77dff;
+    --bg: #fff5f7;
+    --bg-warm: #fffaf0;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a3f55;
+    --text-soft: #8a7090;
+    --card-white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-dark);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='18' font-size='18'%3E✨%3C/text%3E%3C/svg%3E") 12 12, auto;
+  }
+
+  /* ========== SQUIGGLY BACKGROUND ========== */
+  .bg-squiggles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.07;
+  }
+
+  /* ========== CONFETTI LAYER ========== */
+  .confetti-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .conf {
+    position: absolute;
+    border-radius: 2px;
+    opacity: 0;
+    animation: conf-fall linear infinite;
+  }
+  @keyframes conf-fall {
+    0% { opacity: 0; transform: translateY(-20px) rotate(0deg); }
+    5% { opacity: 0.8; }
+    90% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(105vh) rotate(480deg); }
+  }
+
+  .content { position: relative; z-index: 2; }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 30%, #ff3d7f14 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 85% 70%, #ffd93d18 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, #4ecdc411 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .badge.pink { background: var(--hot-pink); color: white; }
+  .badge.yellow { background: var(--yellow); color: var(--text-dark); }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 12vw, 7.5rem);
+    line-height: 0.9;
+    color: var(--text-dark);
+    animation: fadeInUp 0.8s ease both;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+  .hero h1 .small-line {
+    display: block;
+    font-size: 0.4em;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-soft);
+    letter-spacing: 1px;
+    margin-bottom: 0.2em;
+  }
+  .hero h1 .name-line {
+    display: block;
+    position: relative;
+    color: var(--hot-pink);
+    -webkit-text-stroke: 2px var(--hot-pink);
+    animation: fadeInUp 0.8s ease both;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+
+  .age-bubble {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--text-dark);
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    padding: 0.4em 1.2em;
+    border-radius: 50px;
+    margin-top: 1.5rem;
+    box-shadow: 4px 4px 0 var(--text-dark);
+    animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 0.8s;
+    opacity: 0;
+  }
+
+  .hero-sub {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--text-mid);
+    margin-top: 1.2rem;
+    animation: fadeInUp 0.8s ease both;
+    animation-delay: 1s;
+    opacity: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--text-soft);
+    animation: fadeIn 1s ease both 2s, bob 2s ease-in-out infinite;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .scroll-hint .arrow-down {
+    font-size: 1.2rem;
+    animation: bob 1.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ========== SECTIONS ========== */
+  .section-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  /* ========== STICKER LABEL ========== */
+  .sticker-label {
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    transform: rotate(-1.5deg);
+  }
+  .sticker-label.pink { background: var(--hot-pink); }
+  .sticker-label.teal { background: var(--sky); color: var(--text-dark); }
+  .sticker-label.yellow { background: var(--yellow); color: var(--text-dark); }
+  .sticker-label.mint { background: var(--mint); color: var(--text-dark); }
+
+  /* ========== CARDS ========== */
+  .card {
+    background: var(--card-white);
+    border-radius: 20px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 2px solid var(--text-dark);
+    box-shadow: 5px 5px 0 var(--text-dark);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 0.5rem;
+  }
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0 var(--text-dark);
+  }
+
+  /* ========== MAYDAY CARD ========== */
+  .mayday-card {
+    background: var(--text-dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .mayday-card::before {
+    content: '⚠️';
+    position: absolute;
+    font-size: 8rem;
+    right: -1rem;
+    top: -1rem;
+    opacity: 0.08;
+    line-height: 1;
+  }
+  .mayday-card .alert-label {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--text-dark);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .mayday-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+  .mayday-card h2 .flash {
+    color: var(--yellow);
+  }
+  .mayday-card p {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    color: #b0b0c8;
+    line-height: 1.8;
+  }
+  .mayday-card p strong { color: white; }
+  .mayday-card .small-note {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--sky);
+    margin-top: 1rem;
+    display: block;
+  }
+
+  /* ========== THE NOTE ========== */
+  .note-card {
+    background: #fffdf0;
+    border-color: var(--yellow);
+    box-shadow: 5px 5px 0 #f5c800;
+    position: relative;
+  }
+  .note-card::after {
+    content: '📌';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+  }
+  .note-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  .note-card p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+  }
+  .note-card p:last-of-type { margin-bottom: 0; }
+  .note-card .highlight-pink { color: var(--hot-pink); font-weight: 600; }
+  .note-card .highlight-teal { color: #009e94; font-weight: 600; }
+
+  /* ========== LITTLE SISTER ZONE ========== */
+  .sister-zone {
+    background: linear-gradient(135deg, #fff0f5, #fff5ff);
+    border-color: var(--lavender);
+    box-shadow: 5px 5px 0 var(--lavender);
+    text-align: center;
+  }
+  .sister-zone .big-emoji {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    animation: wiggle 2s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-4deg); }
+    80% { transform: rotate(4deg); }
+  }
+  .sister-zone h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .sister-zone .zone-badge {
+    display: inline-block;
+    background: var(--lavender);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+  }
+  .sister-zone p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  /* ========== BLESSING CARD ========== */
+  .blessing-card {
+    background: linear-gradient(135deg, #f0fff4, #f0f9ff);
+    border-color: var(--mint);
+    box-shadow: 5px 5px 0 var(--mint);
+  }
+  .blessing-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .blessing-card p {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.92rem;
+    line-height: 2;
+    color: var(--text-mid);
+    margin-bottom: 1rem;
+  }
+  .blessing-card p strong { color: var(--text-dark); }
+  .blessing-card .caveat-note {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--mint);
+    display: block;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ========== SLEEPOVER CARD ========== */
+  .sleepover-card {
+    background: #1a1a2e;
+    color: white;
+    border-color: var(--sky);
+    box-shadow: 5px 5px 0 var(--sky);
+  }
+  .sleepover-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--yellow);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .sleepover-card p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: #9090bb;
+    line-height: 1.9;
+    margin-bottom: 0.5rem;
+  }
+  .sleepover-card p strong { color: white; }
+  .sleepover-card p .teal-pop { color: var(--sky); font-weight: 700; }
+  .sleepover-card .night-stars {
+    letter-spacing: 4px;
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ========== MOVES CARD ========== */
+  .moves-card {
+    background: linear-gradient(135deg, #fff8e1, #fff0f5);
+    border-color: var(--coral);
+    box-shadow: 5px 5px 0 var(--coral);
+    text-align: center;
+  }
+  .moves-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .moves-card p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .disclaimer {
+    display: inline-block;
+    background: var(--coral);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-top: 0.75rem;
+  }
+
+  /* ========== CLOSING HERO ========== */
+  .closing-hero {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .closing-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    line-height: 1.05;
+    color: var(--text-dark);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .closing-text.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .closing-text .pink-line { color: var(--hot-pink); display: block; }
+  .closing-text .teal-line {
+    display: block;
+    -webkit-text-stroke: 2px var(--sky);
+    color: transparent;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  footer .emoji-row {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 0.75rem;
+  }
+  footer .made-with {
+    font-size: 0.65rem;
+    color: var(--text-soft);
+    letter-spacing: 1.5px;
+    font-family: 'Syne', sans-serif;
+  }
+  footer .made-with a {
+    color: var(--hot-pink);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  footer .made-with a:hover { text-decoration: underline; }
+
+  /* ========== DIVIDER ========== */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .divider .dline {
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--text-dark) 0, var(--text-dark) 4px, transparent 4px, transparent 10px);
+    opacity: 0.12;
+  }
+  .divider .dicon { font-size: 1.1rem; }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 520px) {
+    .badge-row { flex-wrap: wrap; justify-content: center; }
+    .card { box-shadow: 3px 3px 0 var(--text-dark); }
+    .card:hover { box-shadow: 5px 5px 0 var(--text-dark); }
+  }
+</style>
+</head>
+<body>
+
+<div class="confetti-bg" id="confettiBg"></div>
+
+<div class="content">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="badge-row">
+      <span class="badge pink">May 1st</span>
+      <span class="badge yellow">🚨 Mayday!</span>
+    </div>
+    <h1>
+      <span class="small-line">oh wow, you're</span>
+      Happy Birthday
+      <span class="name-line">Tashie!!</span>
+    </h1>
+    <div class="age-bubble">19 years old 🎂</div>
+    <p class="hero-sub">finally a whole teenager... wait 😂</p>
+    <div class="scroll-hint">
+      scroll for the good stuff
+      <div class="arrow-down">↓</div>
+    </div>
+  </section>
+
+  <!-- ==================== MAYDAY ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label yellow">🚨 Urgent Notice</div>
+    <div class="card mayday-card" data-reveal>
+      <div class="alert-label">⚠ Official Alert — May 1st</div>
+      <h2>
+        <span class="flash">MAYDAY! MAYDAY!</span><br>
+        A 19-year-old has been spotted.
+      </h2>
+      <p>
+        For the uninformed — <strong>Mayday</strong> is the international distress signal. It is also <strong>Labour Day</strong>, a holiday dedicated to workers and their toil. Your mother, specifically, was doing a <em>lot</em> of labour on this particular day. Coincidence? We think not.
+      </p>
+      <p style="margin-top: 0.75rem;">
+        In other news, the world declared it a public holiday the day you were born. <strong>You're welcome for that interpretation.</strong> 😂
+      </p>
+      <span class="small-note">P.S. — You were born on a distress signal. We're just saying.</span>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dline"></div><div class="dicon">🎀</div><div class="dline"></div></div>
+
+  <!-- ==================== THE NOTE ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label pink">📝 A Note</div>
+    <div class="card note-card" data-reveal>
+      <div class="note-title">Hey Tashie,</div>
+      <p>Happy 19th! 🥳 Look at you, <span class="highlight-pink">adulting one year at a time.</span></p>
+      <p>
+        I hope your birthday is absolutely everything — full of cake, good vibes, and people who make you feel special. Today's your day, <span class="highlight-teal">own it completely.</span>
+      </p>
+      <p>
+        Also, I know you have a sleepover tonight, so make it legendary. You only turn 19 once — don't let the night end before 3am. That's the rule. I don't make the rules. I just... made that one. 😂
+      </p>
+      <p>
+        Here's to 19 — the last year before the big 2-0 sneaks up on you. Make it count!
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dline"></div><div class="dicon">✨</div><div class="dline"></div></div>
+
+  <!-- ==================== LITTLE SISTER ZONE ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label teal">🛑 Certified Zone</div>
+    <div class="card sister-zone" data-reveal>
+      <span class="big-emoji">🫂</span>
+      <div class="zone-badge">Official Declaration</div>
+      <h2>"Little Sister Energy.<br>Permanently."</h2>
+      <p>
+        This page has been reviewed, evaluated, and officially stamped. <br>
+        You, Tashie, have been categorized under: <strong>Little Sister Zone™</strong> — effective immediately and indefinitely. <br><br>
+        Benefits include: unsolicited advice, occasional teasing, and someone who'll always be in your corner. <br>
+        Terms & conditions apply. No appeals. 😂
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dline"></div><div class="dicon">🌟</div><div class="dline"></div></div>
+
+  <!-- ==================== BLESSING ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label mint">🙏 The Real Part</div>
+    <div class="card blessing-card" data-reveal>
+      <div class="blessing-title">🌿 A birthday blessing</div>
+      <p>
+        Tashie, I genuinely pray that <strong>God's hand is over every step you take this year.</strong>
+        That doors open before you even raise your hand to knock.
+        That you grow in wisdom, in confidence, in all the good things —
+        and that you look back at 19 and smile at what it became.
+      </p>
+      <span class="caveat-note">— because you deserve a year that exceeds your expectations 🤍</span>
+      <p>
+        May you live long. <strong>Like, three digits long.</strong> May you be the kind of person who still lights up a room at 100 — still laughing, still glowing, still somehow trying to dance.
+      </p>
+      <p>
+        You've got a whole life ahead of you, Tash. Go live it well. 🥂
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dline"></div><div class="dicon">🌙</div><div class="dline"></div></div>
+
+  <!-- ==================== SLEEPOVER ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label" style="background: #1a1a2e; color: var(--sky);">🌙 Tonight</div>
+    <div class="card sleepover-card" data-reveal>
+      <h2>The Sleepover 🛌🎉</h2>
+      <p>
+        Okay so. You have a <strong>sleepover</strong> tonight. On your <strong>birthday</strong>. On <span class="teal-pop">Labour Day</span>. The stars have aligned.
+      </p>
+      <p>
+        This is your official permission slip to stay up too late, eat too much, and laugh until something hurts. <strong>Mandatory.</strong>
+      </p>
+      <p>
+        Have <strong>the most fun.</strong> Be safe. Text when you're home. <em>(Yeah, I said it. Big brother privileges.)</em> 😂
+      </p>
+      <span class="night-stars">🌙 ⭐ 🎊 ✨ 🎈</span>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dline"></div><div class="dicon">💃</div><div class="dline"></div></div>
+
+  <!-- ==================== THE MOVES ==================== -->
+  <div class="section-wrap">
+    <div class="sticker-label" style="background: var(--coral);">💃 Disclaimer</div>
+    <div class="card moves-card" data-reveal>
+      <h2>About Those Moves of Yours...</h2>
+      <p>
+        Here's to still showing them off when you're 100 years old. 💃
+      </p>
+      <p>
+        Standing ovation at your centennial birthday party. Family gathered round. Someone hands you the aux. And you deliver. <em>(Or try to. We'll be cheering either way.) </em>😂
+      </p>
+      <p>
+        May the moves always be there, Tash. <strong>And if they're not</strong> — may you still believe they are. That's the real gift.
+      </p>
+      <div class="disclaimer">If you have them 😂</div>
+    </div>
+  </div>
+
+  <!-- ==================== CLOSING ==================== -->
+  <div class="closing-hero">
+    <div class="closing-text" data-reveal>
+      <span class="pink-line">Happy Birthday,</span>
+      Tashie 🎉
+      <span class="teal-line">have the best one yet.</span>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="emoji-row">🎂 🎉 🌟 💛 🎈</div>
+    <div class="made-with">made with <a href="#">Wrapsite</a></div>
+  </footer>
+
+</div>
+
+<script>
+  // ========== CONFETTI BACKGROUND ==========
+  const confBg = document.getElementById('confettiBg');
+  const colors = [
+    getComputedStyle(document.documentElement).getPropertyValue('--hot-pink').trim(),
+    '#ffd93d', '#6bcb77', '#4ecdc4', '#c77dff', '#ff6b4a', '#ffffff'
+  ];
+  for (let i = 0; i < 50; i++) {
+    const c = document.createElement('div');
+    c.className = 'conf';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.top = -10 + 'px';
+    c.style.width = (5 + Math.random() * 7) + 'px';
+    c.style.height = (5 + Math.random() * 7) + 'px';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    c.style.animationDuration = (6 + Math.random() * 10) + 's';
+    c.style.animationDelay = (Math.random() * 8) + 's';
+    confBg.appendChild(c);
+  }
+
+  // ========== SCROLL REVEAL ==========
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
